@@ -8,6 +8,7 @@ import Game from "./pages/game";
 import * as serviceWorker from './serviceWorker';
 
 require('./static/base.css');
+require('./static/firework.css');
 
 ReactDOM.render(
 	<Provider store={store}>

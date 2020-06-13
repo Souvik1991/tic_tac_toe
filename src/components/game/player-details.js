@@ -21,7 +21,7 @@ const PlayerDetails = () => {
                         <input type="text" autoComplete="off" className="input-field" id="player2" name="player2" value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)}/>
                     </div>
 
-                    <button className="gradient-btn" onClick={() => dispatch({ 
+                    <button className="gradient-btn" disabled={!playerOne || !playerTwo} onClick={() => dispatch({ 
                         type: 'PLAYER_SET', 
                         playerOneName: playerOne,
                         playerTwoName: playerTwo 

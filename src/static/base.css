@@ -324,7 +324,7 @@ body .game-main-container .game-main-cont .game-cont.form .gradient-btn {
   padding: 0;
 }
 body .game-main-container .game-main-cont .game-cont.form .gradient-btn[disabled] {
-  cursor: initial;
+  cursor: not-allowed;
 }
 body .game-main-container .game-main-cont .game-cont.winner {
   padding: 55px 70px;
