@@ -1,0 +1,366 @@
+@import 'variable.less';
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+body{
+    font-family: @fontfamily;
+    font-weight: 400;
+    color: @white;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: @backGroundColor;
+    overflow-x: hidden;
+    margin: 0;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: initial;
+    #root{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .text-uppercase{
+        text-transform: uppercase;
+    }
+    .flex-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        .flexbox{
+            padding: 0 10px;
+            flex-grow: 1;
+            align-self: auto;
+        }
+    }
+    .flex-container.vertical-middle{
+        align-items: center;
+    }
+
+    header{
+        position: absolute;
+        top: 50px;
+        left: 65px;
+        font-weight: 700;
+        font-size: 1.3em;
+        p{
+            display: block;
+            margin-bottom: 3px;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+        p:first-child{
+            letter-spacing: 5px;
+        }
+        p:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    .sign{
+        width: 80px;
+        height: 80px;
+        position: relative;
+        margin: auto;
+        .cross, .round{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0
+        }
+        .cross:after, .cross:before{
+            content: '';
+            height: @signHeight;
+            background: @white;
+            position: absolute;
+            width: 100%;
+            border-radius: 10px;
+            top: ~"calc(50% - 7px)";
+            left: 0;
+        }
+        .cross:after{
+            transform: rotate(-45deg);
+        }
+        .cross:before{
+            transform: rotate(45deg);
+        }
+        .round{
+            border-radius: 50%;
+            top: (@signHeight/2)/2;
+            left: (@signHeight/2)/2;
+            width: ~"calc(100% - 7px)";
+            height: ~"calc(100% - 7px)";
+            border: @signHeight solid @white;
+        }
+    }
+    .sign.selected{
+        .round{
+            border-color: @yellowColor;
+        }
+        .cross:after, .cross:before{
+            background: @yellowColor;
+        }
+    }
+
+    .game-main-container{
+        height: 100%;
+        .gamem{
+            max-width: @contHeight + 25px;
+        }
+        .game-main-cont{
+            width: @contHeight;
+            height: @contHeight;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: @borderRadius;
+            border: @borderWidth dashed @whitishBlue;
+            position: relative;
+            padding: 0;
+            .game-cont{
+                background: @whitishBlue;
+                margin: @margin;
+                border-radius: @borderRadius - 5px;
+                height: @contHeight - ((@margin*2) + (@borderWidth*2));
+                box-shadow: 0px 1px 5px @black;
+                .heading{
+                    font-size: 1.6em;
+                    line-height: 1;
+                    margin-bottom: 35px;
+                    margin-top: 15px;
+                    letter-spacing: 1.5px;
+                    font-weight: 400;
+                    span{
+                        font-weight: 600;
+                        color: @yellowColor
+                    }
+                }
+            }
+            .game-cont.board{
+                display: flex;
+                flex-wrap: wrap;
+                .square{
+                    width: 33.333%;
+                    display: flex;
+                    border-left: 1px dashed rgb(125,138,152);
+                    border-bottom: 1px dashed rgb(125,138,152);
+                }
+                .square:nth-child(1), .square:nth-child(4), .square:nth-child(7){
+                    border-left: 0;
+                }
+                .square:nth-child(7), .square:nth-child(8), .square:nth-child(9){
+                    border-bottom: 0;
+                }
+            }
+            .game-cont.form{
+                padding: @formPadding;
+                .form-group{
+                    margin-bottom: 35px;
+                    label[for]{
+                        display: block;
+                        font-size: .95em;
+                        font-weight: 300;
+                        text-transform: uppercase;
+                        margin-bottom: 10px;
+                        line-height: 1;
+                    }
+                    .input-field{
+                        border: 1px solid @white;
+                        color: @white;
+                        background: transparent;
+                        height: 45px;
+                        display: block;
+                        resize: none;
+                        font-size: 1em;
+                        font-weight: 300;
+                        width: 100%;
+                        border-radius: 2px;
+                        padding: 16px 10px 14px;
+                        line-height: 1;
+                    }
+                }
+                .gradient-btn{
+                    background: @yellowColor;
+                    background: linear-gradient(90deg, @yellowColor 0%, @orangeColor 100%);
+                    border: 0;
+                    display: block;
+                    width: 100%;
+                    color: @white;
+                    border-radius: 2px;
+                    height: 50px;
+                    font-size: 1.1em;
+                    font-weight: 300;
+                    box-shadow: 0px 1px 5px @black;
+                    cursor: pointer;
+                    padding: 0;
+                }
+                .gradient-btn[disabled]{
+                    // opacity: .5;
+                    cursor: initial;
+                }
+            }
+            .game-cont.winner{
+                padding: @formPadding;
+                .heading{
+                    text-align: center;
+                }
+                .player{
+                    width: 205px;
+                    height: 220px;
+                    border: 2px solid @yellowColor;
+                    margin: auto;
+                    border-radius: @borderRadius - 10px;
+                    text-align: center;
+                    .pheading{
+                        color: @yellowColor;
+                        margin-top: 30px;
+                        margin-bottom: 15px;
+                    }
+                    .name{
+                        font-weight: 400;
+                        font-size: 1.4em;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
+
+        .player-main-cont{
+            text-align: center;
+            .turn{
+                font-size: 1.6em;
+                visibility: hidden;
+                margin-bottom: 25px;
+                color: @yellowColor;
+                font-weight: 400;
+                line-height: 1;
+            }
+            .turn.visible{
+                visibility: visible;
+            }
+            .player-cont{
+                background: @whitishBlue;
+                border-radius: @borderRadius - 10px;
+                width: 130px;
+                height: 150px;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 15px;
+                line-height: 1;
+                border: 2px solid transparent;
+                .heading{
+                    font-weight: 400;
+                    color: @yellowColor;
+                    font-size: .87em;
+                    margin-top: 5px;
+                    margin-bottom: 15px;
+                }
+                .name{
+                    font-weight: 400;
+                    font-size: 1.5em;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    margin-bottom: 10px;
+                }
+                .sign{
+                    width: 50px;
+                    height: 50px;
+                    .cross:after, .cross:before{
+                        height: 10px;
+                        top: ~"calc(50% - 5px)";
+                    }
+                    .round{
+                        border-width: 8px;
+                        top: 2px;
+                        left: 2px;
+                    }
+                }
+            }
+            .steps{
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+                .step{
+                    background: @whitishBlue;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    margin: 0 6px;
+                    opacity: .6;
+                }
+                .step.active{
+                    opacity: 1;
+                    background: @white;
+                }
+            }
+        }
+        .player-main-cont.winner{
+            .turn{
+                visibility: visible;
+                text-transform: uppercase;
+                font-size: 1.7em;
+            }
+            .player-cont{
+                border: 2px solid @yellowColor
+            }
+        }
+        .player-main-cont.draw{
+            .turn{
+                visibility: visible;
+                text-transform: uppercase;
+                font-size: 1.7em;
+                color: @white
+            }
+            .player-cont{
+                border: 2px solid @yellowColor
+            }
+        }
+    }
+}
