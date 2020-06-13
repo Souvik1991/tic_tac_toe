@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const PlayerDetails = () => {
+    // Using react hooks to define state variables in functional component
+    // Also defining the redux dispatcher
+    // So that we can dispatch the event from here directly
     const [playerOne, setPlayerOne] = useState("");
     const [playerTwo, setPlayerTwo] = useState("");
     const dispatch = useDispatch();

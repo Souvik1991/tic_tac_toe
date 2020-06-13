@@ -1,6 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+// This code shows the final winner at the end of the game
+// This is a stateless component
+// All the data get passed as props, and it render the ui based on that
+// It uses redux dispatcher to reload the game
 const ShowMatchWinner = (props) => {
     // console.log(props.win);
     const dispatch = useDispatch();
@@ -27,7 +31,7 @@ const ShowMatchWinner = (props) => {
             <div class="pyro">
                 <div class="before"></div>
                 <div class="after"></div>
-        </div>
+            </div>
         </React.Fragment>
     )
 };

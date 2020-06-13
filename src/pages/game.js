@@ -33,6 +33,7 @@ class Game extends Component{
     }
 }
 
+// Reading all the initial state variable value
 const mapStateToProps = state => ({
     gameReady: state.gameReady,
     playerOneName: state.playerOneName,
@@ -48,4 +49,6 @@ const mapStateToProps = state => ({
     haveMatchWinner: state.haveMatchWinner
 });
   
+// Passing the initial props value
+// Passing the callback functions as well
 export default connect(mapStateToProps, { placeAndCheck })(Game);

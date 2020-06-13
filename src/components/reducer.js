@@ -1,3 +1,4 @@
+// Defining all initial state values
 const initialState = {
     gameReady: false,
     playerOneName: '',
@@ -13,6 +14,8 @@ const initialState = {
     haveMatchWinner: false 
 };
 
+// The game reducer
+// Chaging the store state value
 const game = (state = initialState, action) => {
     let tmpState = {};
     // console.log(action);

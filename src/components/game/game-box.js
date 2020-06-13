@@ -1,5 +1,8 @@
 import React from 'react';
 
+// This code contain the main game box
+// This is a stateless component
+// All the data get passed as props, and it render the ui based on that
 const GameBox = (props) => {
     // console.log(props.win);
     return (

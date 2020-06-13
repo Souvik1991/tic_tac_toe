@@ -1,5 +1,8 @@
 import React from 'react';
 
+// This code contain both the player details box
+// This is a stateless component
+// All the data get passed as props, and it render the ui based on that
 const PlayerBox = (props) => {
     return (
         <div className="flexbox">
