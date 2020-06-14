@@ -1,3 +1,5 @@
+Live demo [link](https://souvik1991.github.io/tic-tac-toe/index.html).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # App screenshot
