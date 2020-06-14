@@ -15,7 +15,7 @@ const initialState = {
 };
 
 // The game reducer
-// Chaging the store state value
+// Changing the store state value
 const game = (state = initialState, action) => {
     let tmpState = {};
     // console.log(action);
