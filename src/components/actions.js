@@ -22,12 +22,12 @@ const checkWinner = (game) => {
         for(let i = 0; i < winComb.length; i++){
             let el = winComb[i];
             if(game[el[0]] !== -1 || game[el[1]] !== -1 || game[el[2]] !== -1){
-                if(game[el[0]] === game[el[1]] && game[el[1]] === game[el[2]]) return {winner: game[el[0]], winIndex: el}
+                if(game[el[0]] === game[el[1]] && game[el[1]] === game[el[2]]) return {winnerId: game[el[0]], winIndex: el}
             }
         }
     }
     // If there is no match, return it with -1 winner
-    return {winner: -1, winIndex: []}
+    return {winnerId: -1, winIndex: []}
 };
 
 // Trigger the winner event
@@ -70,43 +70,40 @@ export function placeAndCheck(index){
         // Check we already have winner or not
         // Also check if the match is draw or not
         // If any of the condition match reset the game for rematch
-        if(getState().winner !== -1 || getState().matchDraw){
+        const {winner, matchDraw, currentPlayer, gameArr, totalGameCount} = getState();
+        if(winner !== -1 || matchDraw){
             dispatch({type: 'RESET_GAME'})
             return;
         }
 
         // Getting the game array from the store
         // If the player is already assinged for the index return from here
-        const game = [...getState().gameArr];
+        const game = [...gameArr];
         if(game[index] !== -1) return;
 
         // Get the current player number
         // And assing that player number in the game array
-        const currentPlayer = getState().currentPlayer;
         game[index] = currentPlayer;
 
         // Check we have winner or not
         // If there is a winner it should return the player number and
         // The array of index for which combination winner has won the match
         // If there is no winner it will return winner as -1
-        let {winner, winIndex} = checkWinner(game);
+        const {winnerId, winIndex} = checkWinner(game);
 
         // checking the winner value if there is an winner the winner will player number
-        if(winner !== -1){
+        if(winnerId !== -1){
             // Getting the player win count for each player
-            let playerOneWinCount =  getState().playerOneWinCount,
-                playerTwoWinCount = getState().playerTwoWinCount;
-            
+            let {playerOneWinCount, playerTwoWinCount} =  getState();
             // Increasing the win count depending upon the winner
             // If the first player win we are increasing the player one win count
-            if(winner === 1) playerOneWinCount++;
+            if(winnerId === 1) playerOneWinCount++;
             else playerTwoWinCount++;
 
             // After we set all the variable value
             // We dispatch event for the store so that we can update value on redux
-            dispatch(setWinner(winner, winIndex, game, playerOneWinCount, playerTwoWinCount));
-            if(playerOneWinCount === getState().totalGameCount || playerTwoWinCount === getState().totalGameCount) 
-                dispatch({type: 'FINAL_WINNER'})
+            if(playerOneWinCount === totalGameCount || playerTwoWinCount === totalGameCount) dispatch({type: 'FINAL_WINNER'})
+            else dispatch(setWinner(winnerId, winIndex, game, playerOneWinCount, playerTwoWinCount));
         }
         else{
             // If there is no winner, checking how many move is left
