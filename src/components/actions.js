@@ -97,11 +97,14 @@ export function placeAndCheck(index){
             let {playerOneWinCount, playerTwoWinCount} =  getState();
             // Increasing the win count depending upon the winner
             // If the first player win we are increasing the player one win count
+            // Else increasing the player two win count
             if(winnerId === 1) playerOneWinCount++;
             else playerTwoWinCount++;
 
             // After we set all the variable value
             // We dispatch event for the store so that we can update value on redux
+            // If any of the player's win count matches the total game count we are setting the final winner
+            // Else we are setting the winner for the game
             if(playerOneWinCount === totalGameCount || playerTwoWinCount === totalGameCount) dispatch({type: 'FINAL_WINNER'})
             else dispatch(setWinner(winnerId, winIndex, game, playerOneWinCount, playerTwoWinCount));
         }
@@ -110,7 +113,7 @@ export function placeAndCheck(index){
             const remainTurn = game.filter(el => el === -1);
             // If there is no move left, that means it's a draw
             // Else set assing the player click in game array
-            // Also switch current player
+            // Also switch current player number
             if(remainTurn.length === 0) dispatch(setDraw(game));
             else dispatch(place(game, currentPlayer === 1 ? 2 : 1));
         }

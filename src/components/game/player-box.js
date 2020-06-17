@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const PlayerBox = ({player, current, winner, draw, name, win, step}) => {
     return (
         <div className="flexbox">
-            <div className={`player-main-cont${winner === player ? ' winner' : ''}${(draw) ? ' draw':''}`}>
+            <div className={`player-main-cont${winner === player ? ' winner' : ''}${(draw) ? ' draw' : ''}`}>
                 <div className={`turn${current === player ? ' visible' : ''}`}>
                     {winner === player ? 'Winner' : (draw) ? 'Draw' : 'Your Turn'}
                 </div>
